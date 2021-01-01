@@ -1,0 +1,136 @@
+<Keys>:
+    background_normal:''
+    background_color: 0.12,0.13,0.20,1,
+    color: 0.27,0.29,0.44,1,
+    font_size:40
+    on_press:
+        self.background_color = (0,0,0,1)
+        self.button_pressed()
+    on_state:
+        self.background_color= 0.12,0.13,0.20,1,
+
+    
+<MainCal>:
+    canvas.before:
+        Color:
+            rgba: 00.09,0.09,0.13,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    display: display_id
+    # for the main display
+    FloatLayout:
+        pos_hint:{'top':0.98,'x':0.020}
+        size_hint:(0.96,0.5)
+
+        MainInput:
+            size:root.size
+            halign:"left"
+            hint_text:'0'
+            on_focus: focus = False
+            id: display_id
+            pos_hint:{'top':1,'x':0}
+            multiline:True
+            font_size:40
+            on_text: self.changeToYellow()
+    # for numeric keypad
+    GridLayout:
+        pos_hint:{'bottom':0,'x':0}
+        size_hint:(1,0.45)
+        padding_hint: 0.02
+        rows:4
+        cols:5
+
+        Keys:
+            text:'7'
+        Keys:
+            text:'8'
+        Keys:
+            text:'9'
+        Keys:
+            background_color: 0.27,0.29,0.44,1,
+            color: 0.12,0.13,0.20,1,
+            on_press:self.background_color = (0,0,0,1)
+            on_state:
+                self.background_color= 0.27,0.29,0.44,1,
+            text:'DEL'
+        Keys:
+            background_color: 0.27,0.29,0.44,1,
+            color: 0.12,0.13,0.20,1,
+            on_press:self.background_color = (0,0,0,1)
+            on_state:
+                self.background_color= 0.27,0.29,0.44,1,
+            text:'AC'
+        Keys:
+            text:'4'
+            on_press:
+                root.EvalText += '4'
+        Keys:
+            text:'5'
+            on_press:
+                root.EvalText += '5'
+        Keys:
+            text:'6'
+            on_press:
+                root.EvalText += '5'
+        Keys:
+            text:'×'
+            on_press:
+                root.EvalText += '×'
+        Keys:
+            text:'÷'
+            on_press:
+                root.EvalText += '÷'
+        Keys:
+            text:'1'
+            on_press:
+                root.EvalText += '1'
+        Keys:
+            text:'2'
+            on_press:
+                root.EvalText += '2'
+        Keys:
+            text:'3'
+            on_press:
+                root.EvalText += '3'
+        Keys:
+            text:'+'
+            on_press:
+                root.EvalText += '+'
+        Keys:
+            text:'-'
+            on_press:
+                root.EvalText += '-'
+        Keys:
+            text:'0'
+            on_press:
+                root.EvalText += '0'
+        Keys:
+            font_size:35
+            text:'•'
+            on_press:
+                root.EvalText += '.'
+        Keys:
+            font_size:55
+            text:'Æ'
+            on_press:
+                root.copy_to_clipboard_and_notify()
+        Keys:
+            font_size:50
+            text:'Ans'
+            on_press:
+                root.EvalText += 'Ans'
+        Keys:
+            background_normal:''
+            background_color: 0.5,0.71,0.68,1
+            color:1,1,1,1
+            on_press:
+                self.background_color = (0,0,0,1)
+                root.evaluate()
+            on_state:
+                self.background_color=(0.5,0.71,0.68,1)
+            text:'='
+
+
+            
+
